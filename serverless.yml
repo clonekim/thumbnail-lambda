@@ -1,0 +1,21 @@
+service: thumbnail-service
+
+provider:
+  name: aws
+  runtime: nodejs6.10
+  stage: ${opt:stage, 'dev'}
+  region: ap-northeast-2
+  memorySize: 128
+  timeout: 10
+  role: arn:aws:iam::898464262141:role/lambda.fullaccess@makespace
+
+plugins:
+  - serverless-offline
+
+functions:
+  endpoint:
+    handler: handler.app
+    events:
+      - http:
+          path: /resized/{size}/{filename}
+          method: get  
