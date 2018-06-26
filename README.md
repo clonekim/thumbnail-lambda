@@ -48,7 +48,7 @@ aws lambda create-function
  --memory-size 1024
 ```
 
-패키징 작업이 만만치 않다 그래서 툴을 사용하는데
+패키징 작업이 만만치 않다 그래서 툴을 사용하는데  
 여기서는 serverless 를 사용하겠다.
 
 
@@ -57,7 +57,7 @@ aws lambda create-function
 
 ### 1. 템플릿 생성
 
-``bash
+```bash
 sls create --template aws-nodejs --path thumbnail-lambda
 cd thumbnail-lambda
 npm init -y
@@ -67,12 +67,12 @@ npm install --save gm aws-sdk
 
 ### 2. 썸네일 생성 로직
 
-전제조건) S3 버킷에 파일이 있다.
-1. 클라이이언트 측에서 정해진 사이즈로 파일을 불러온다.
-2. 이미지 사이즈는 고정값이 아니고 그때그때 마다 지정한다.
-아래와 같이 이미지를 요청하면
+전제조건) S3 버킷에 파일이 있다.  
+1. 클라이이언트 측에서 정해진 사이즈로 파일을 불러온다.  
+2. 이미지 사이즈는 고정값이 아니고 그때그때 마다 지정한다.  
+아래와 같이 이미지를 요청하면  
 ```
 http://xxxxx/resized/100x100/abc.png
 ```
-S3 resized/100x100 버킷에 이미지 없을 경우 생성한다.
+S3 resized/100x100 버킷에 이미지 없을 경우 생성한다.  
 이미지 생성 후 혹은 2.의 요청에서 이미지가 있을 경우 리다이텍트한다.
